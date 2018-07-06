@@ -5,21 +5,27 @@
   </mat-toolbar>
   <div style="justify-content: center" fxLayout="column">
     <mat-list *ngFor="let taxData of taxCalculationHistory">
+    <mat-list>
       <mat-list-item>
-        <h4 matLine>Net Income: ${{taxData.net}}</h4>
+        <h4 matLine>Superannuation: ${{taxData.superannuation}}</h4>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item *ngIf="taxData.gross">
         <h4 matLine>Gross: ${{taxData.gross}}</h4>
+      </mat-list-item>
+      <mat-list-item *ngIf="taxData.grossWithSuper">
+        <h4 matLine>Gross with Super: ${{taxData.grossWithSuper}}</h4>
       </mat-list-item>
       <mat-list-item>
         <h4 matLine>Tax: ${{taxData.tax}}</h4>
       </mat-list-item>
       <mat-list-item>
-        <h4 matLine>Superannuation: ${{taxData.superannuation}}</h4>
+        <h4 matLine>Net Income (after tax): ${{taxData.net}}</h4>
       </mat-list-item>
       <mat-list-item>
         <h4 matLine>Net income with Super: ${{taxData.netWithSuper}}</h4>
       </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
       <mat-divider></mat-divider>
 
     </mat-list>

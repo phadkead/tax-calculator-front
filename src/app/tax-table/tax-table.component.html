@@ -37,6 +37,34 @@
               type="submit"
       >Calculate
       </button>
+      <div *ngIf="calculatedData">
+        <p>
+          Here is your calculates tax data:
+        </p>
+
+        <mat-list>
+          <mat-list-item>
+            <h4 matLine>Superannuation: ${{calculatedData.superannuation}}</h4>
+          </mat-list-item>
+          <mat-list-item *ngIf="calculatedData.gross">
+            <h4 matLine>Gross: ${{calculatedData.gross}}</h4>
+          </mat-list-item>
+          <mat-list-item *ngIf="calculatedData.grossWithSuper">
+            <h4 matLine>Gross with Super: ${{calculatedData.grossWithSuper}}</h4>
+          </mat-list-item>
+          <mat-list-item>
+            <h4 matLine>Tax: ${{calculatedData.tax}}</h4>
+          </mat-list-item>
+          <mat-list-item>
+            <h4 matLine>Net Income (after tax): ${{calculatedData.net}}</h4>
+          </mat-list-item>
+          <mat-list-item>
+            <h4 matLine>Net income with Super: ${{calculatedData.netWithSuper}}</h4>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+
     </form>
 
   </div>
