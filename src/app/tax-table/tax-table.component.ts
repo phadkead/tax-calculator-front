@@ -30,7 +30,7 @@ export class TaxTableComponent implements OnInit {
   calculateTax(superAnnuation, grossWithSuper, gross, finyear) {
     console.log('calculateTax');
     this.taxService.calculateTax(superAnnuation, grossWithSuper, gross, finyear).subscribe(res => {
-      console.log(res)
+      console.log(res);
       this.calculatedData = res;
     });
   }
