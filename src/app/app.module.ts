@@ -8,10 +8,22 @@ import {TaxTableComponent} from './tax-table/tax-table.component';
 import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TokenInterceptor} from './tax-table/interceptor/token.interceptor';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatListModule,
+  MatCardModule,
+  MatToolbarModule,
+  MatTabsModule,
+} from '@angular/material';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 const appRoutes: Routes = [
   {path: '', component: TaxTableComponent},
-  {path: 'taxes', component: TaxTableComponent}
+  {path: 'taxes', component: TaxTableComponent},
+  {path: 'taxes/history', component: TaxTableComponent} // TODO
 ];
 
 @NgModule({
@@ -27,12 +39,22 @@ const appRoutes: Routes = [
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatButtonModule,
+    MatInputModule,
+    MatListModule,
+    MatCardModule,
+    MatFormFieldModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatTabsModule],
   providers: [
-    [ { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true } ]
+    [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}]
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [MatButtonModule, MatInputModule, MatListModule, MatCardModule],
 })
 export class AppModule {
 }

@@ -1,11 +1,11 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>Welcome to {{ title }}!</h1>
 </div>
 
-<nav>
-  <a routerLink="/taxes" routerLinkActive="active">Tax calculations</a>
-</nav>
+<mat-tab-group>
+  <mat-tab routerLink="/taxes" routerLinkActive="active" label="Tax calculations"></mat-tab>
+  <mat-tab routerLink="/taxes/history" routerLinkActive="active" label="Tax calculations history"></mat-tab>
+</mat-tab-group>
 
 <div>
   <router-outlet></router-outlet>

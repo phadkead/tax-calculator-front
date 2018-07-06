@@ -1,45 +1,42 @@
-<p>
-  tax-table works!
-</p>
-
 <div class="panel panel-primary">
-  <div class="panel-heading">
-    {{ title }}
-  </div>
-  <div class="panel-body">
-    <form>
-      <div class="form-group">
-        <label class="col-md-4">Super Annuation %</label>
-        <input type="number" class="form-control" name="superAnnuation" #superPercentage/>
-      </div>
-      <div class="form-group">
-        <label class="col-md-4">Income Gross + Superannuation</label>
-        <input type="number" class="form-control" name="grossWithSuper" #grossWithSuper/>
-      </div>
 
-      <div class="form-group">
-        <label class="col-md-4">Income Gross</label>
-        <input type="number" class="form-control" name="income" #gross/>
-      </div>
-
-      <div class="form-group">
-        <label class="col-md-4">Financial year</label>
-        <input type="number" class="form-control" name="finyear" #finyear/>
-      </div>
-
-      <div class="form-group">
-        <button
-          (click)="calculateTax(superPercentage.value, grossWithSuper.value, gross.value, finyear.value)"
-          type="submit"
-          class="btn btn-primary"
-        >Add
-        </button>
-      </div>
+  <mat-toolbar>
+    <span>Tax calculation</span>
+  </mat-toolbar>
+  <div style="justify-content: center" fxLayout="row">
+    <form class="form">
+      <p>
+        Enter Gross Income or Income with super
+      </p>
+      <p>
+        <mat-form-field appearance="legacy">
+          <mat-label>Super Annuation %</mat-label>
+          <input matInput placeholder="Enter Super Annuation %" type="number" #superPercentage>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Gross Income</mat-label>
+          <input matInput type="number" placeholder="Enter Gross Income" #gross/>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Income + Superannuation</mat-label>
+          <input matInput type="number" placeholder="Income Gross + Superannuation" #grossWithSuper/>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Financial year</mat-label>
+          <input matInput type="number" placeholder="Enter Financial year" #finyear/>
+        </mat-form-field>
+      </p>
+      <button mat-raised-button
+              (click)="calculateTax(superPercentage.value, grossWithSuper.value, gross.value, finyear.value)"
+              type="submit"
+      >Calculate
+      </button>
     </form>
   </div>
-  <div *ngIf="calculatedData">
-    Data: {{calculatedData.net}}
-  </div>
-
-
 </div>
