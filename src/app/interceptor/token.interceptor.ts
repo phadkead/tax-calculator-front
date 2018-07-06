@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor} from '@angular/common/http';
 import {HttpRequest} from '@angular/common/http';
-import {TokenService} from '../service/token.service';
+import {TokenService} from '../tax-table/service/token.service';
 import {Observable} from 'rxjs';
 
 @Injectable()

@@ -22,4 +22,9 @@ export class TaxService {
     console.log('posting data from service:' + data);
     return this.http.post(uri, data);
   }
+
+  getTaxHistory() {
+    const uri = this.BACKEND_URL + '/taxes';
+    return this.http.get(uri);
+  }
 }

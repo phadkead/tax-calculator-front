@@ -2,10 +2,10 @@
   <h1>Welcome to {{ title }}!</h1>
 </div>
 
-<mat-tab-group>
-  <mat-tab routerLink="/taxes" routerLinkActive="active" label="Tax calculations"></mat-tab>
-  <mat-tab routerLink="/taxes/history" routerLinkActive="active" label="Tax calculations history"></mat-tab>
-</mat-tab-group>
+<nav mat-tab-nav-bar>
+  <a mat-tab-link routerLink="/taxes" routerLinkActive="active">Tax calculation</a>
+  <a mat-tab-link routerLink="/history" routerLinkActive="active">Tax calculations history</a>
+</nav>
 
 <div>
   <router-outlet></router-outlet>
