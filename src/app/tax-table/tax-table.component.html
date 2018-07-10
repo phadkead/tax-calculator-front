@@ -4,20 +4,33 @@
     <span>Tax calculation</span>
   </mat-toolbar>
   <div style="justify-content: center" fxLayout="row">
-    <form class="form">
+    <form class="form-group">
       <p>
         Enter Gross Income or Income with super
       </p>
       <p>
         <mat-form-field appearance="legacy">
           <mat-label>Super Annuation %</mat-label>
-          <input matInput placeholder="Enter Super Annuation %" type="number" #superPercentage>
+          <div [formGroup]="myform">
+            <input matInput placeholder="Enter Super Annuation %" class="form-control" type="number"
+                   formControlName="superPercentage">
+            <div class="form-control-feedback"
+                 *ngIf="superPercentage.hasError('required') && (superPercentage.dirty || superPercentage.touched)">
+              Superannuation is required
+            </div>
+          </div>
         </mat-form-field>
       </p>
+
       <p>
         <mat-form-field appearance="standard">
           <mat-label>Gross Income</mat-label>
-          <input matInput type="number" placeholder="Enter Gross Income" #gross/>
+          <div [formGroup]="myform">
+            <input matInput type="number" placeholder="Enter Gross Income" class="form-control" formControlName="gross"/>
+            <div class="form-control-feedback" *ngIf="gross.hasError('required') && (gross.dirty || gross.touched)">
+              Gross Income is required
+            </div>
+          </div>
         </mat-form-field>
       </p>
       <p>
@@ -29,10 +42,13 @@
       <p>
         <mat-form-field appearance="standard">
           <mat-label>Financial year</mat-label>
-          <input matInput type="number" placeholder="Enter Financial year" #finyear/>
+          <div [formGroup]="myform">
+            <input matInput type="number" placeholder="Enter Financial year" class="form-control"
+                   formControlName="finyear"/>
+          </div>
         </mat-form-field>
       </p>
-      <button mat-raised-button
+      <button mat-raised-button [disabled]="!myform.valid"
               (click)="calculateTax(superPercentage.value, grossWithSuper.value, gross.value, finyear.value)"
               type="submit"
       >Calculate
@@ -64,8 +80,6 @@
           <mat-divider></mat-divider>
         </mat-list>
       </div>
-
     </form>
-
   </div>
 </div>

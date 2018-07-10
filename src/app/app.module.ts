@@ -19,12 +19,13 @@ import {
   MatTabsModule,
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { TaxHistoryComponent } from './tax-history/tax-history.component';
+import {TaxHistoryComponent} from './tax-history/tax-history.component';
+import {TokenAuthGuard} from './tax-table/service/tokenguard.service';
 
 const appRoutes: Routes = [
   {path: '', component: TaxTableComponent},
-  {path: 'history', component: TaxHistoryComponent},
-  {path: 'taxes', component: TaxTableComponent},
+  {path: 'history', component: TaxHistoryComponent, canActivate: [TokenAuthGuard]},
+  {path: 'taxes', component: TaxTableComponent, canActivate: [TokenAuthGuard]},
 ];
 
 @NgModule({
@@ -54,7 +55,8 @@ const appRoutes: Routes = [
     MatListModule,
   ],
   providers: [
-    [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}]
+    TokenAuthGuard,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
   exports: [MatButtonModule, MatInputModule, MatListModule, MatCardModule],

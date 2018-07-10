@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {TaxService} from './service/tax.service';
 
 @Component({
@@ -9,22 +9,35 @@ import {TaxService} from './service/tax.service';
 })
 export class TaxTableComponent implements OnInit {
 
-  angForm: FormGroup;
+  myform: FormGroup;
   calculatedData: any;
+  superPercentage: FormControl;
+  grossWithSuper: FormControl;
+  gross: FormControl;
+  finyear: FormControl;
 
-  constructor(private taxService: TaxService, private fb: FormBuilder) {
+  constructor(private taxService: TaxService) {
   }
 
   ngOnInit() {
+    this.createFormControls();
+    this.createForm();
   }
 
   createForm() {
-    this.angForm = this.fb.group({
-      superPercentage: ['', Validators.required],
-      grossWithSuper: ['', Validators.required],
-      gross: ['', Validators.required],
-      finyear: ['', Validators.required]
+    this.myform = new FormGroup({
+      gross: this.gross,
+      grossWithSuper: this.grossWithSuper,
+      finyear: this.finyear,
+      superPercentage: this.superPercentage,
     });
+  }
+
+  createFormControls() {
+    this.gross = new FormControl('');
+    this.grossWithSuper = new FormControl('');
+    this.finyear = new FormControl('', [Validators.required]);
+    this.superPercentage = new FormControl('', Validators.required);
   }
 
   calculateTax(superAnnuation, grossWithSuper, gross, finyear) {
